@@ -44,12 +44,12 @@ This is equivalent to declaring `sectence` like so:
 
 ```ts
 let sentence: string =
-   "Hello, my name is " +
-   fullName +
-   ".\n\n" +
-   "I'll be " +
-   (age + 1) +
-   " years old next month.";
+    "Hello, my name is " +
+    fullName +
+    ".\n\n" +
+    "I'll be " +
+    (age + 1) +
+    " years old next month.";
 ```
 
 ### Array
