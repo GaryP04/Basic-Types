@@ -70,7 +70,7 @@ let list: Array<number> = [1, 2, 3];
 
 Tuple types allow you to express an array with a fixed number of elements whose types are known, but need not be the same. For example, you may want to represent a value as a pair of a `string` and a `number`:
 
-'''ts
+```ts
 // Declare a tuple type
 let x: [string, number];
 // Initialize it
@@ -83,7 +83,7 @@ x = [10, "hello"]; // Error
 
 When accessing an element with a known index, the correct type is retrieved:
 
-```
+```ts
 // OK
 console.log(x[0].substring(1));
 
@@ -93,7 +93,7 @@ console.log(x[1].substring(1));
 
 Accessing an element outside the set of known indices fails with an error:
 
-```
+```ts
 x[3] = "world";
 `Tuple type '[string, number]' of length '2' has no element at index '3'.`
 
