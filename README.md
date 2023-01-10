@@ -77,8 +77,8 @@ let x: [string, number];
 x = ["hello", 10]; // OK
 // Initialize it incorrectly
 x = [10, "hello"]; // Error.
-**Type 'number' is not assignable to type 'string'.**
-**Type 'string' is not assignable to type 'number'.**
+Type 'number' is not assignable to type 'string'.
+Type 'string' is not assignable to type 'number'.
 ```
 
 When accessing an element with a known index, the correct type is retrieved:
@@ -88,16 +88,65 @@ When accessing an element with a known index, the correct type is retrieved:
 console.log(x[0].substring(1));
 
 console.log(x[1].substring(1));
-**Property 'substring' does not exist on type 'number'.**
+Property 'substring' does not exist on type 'number'.
 ```
 
 Accessing an element outside the set of known indices fails with an error:
 
 ```ts
 x[3] = "world";
-**Tuple type '[string, number]' of length '2' has no element at index '3'.**
+Tuple type '[string, number]' of length '2' has no element at index '3'.
 
 console.log(x[5].toString());
-**Object is possibly 'underfined'.**
-**Tuple type '[string, number]' of length '2' has no element at index '5'.**
+Object is possibly 'underfined'.
+Tuple type '[string, number]' of length '2' has no element at index '5'.
+```
+
+### Enum
+
+A helpful addition to the standard set of datatypes from JavaScript is the `enum`. As in languages like C#, an enum is a way of giving move friendly names to sets of numeric values.
+
+```ts
+enum Color {
+    Red,
+    Green,
+    Blue,
+}
+let c: Color = Color.Green;
+```
+
+By default, enums begin numbering their members starting at 0. You can change this by manually setting the value of one of its members. For example, we can start the previous exmaple at `1` instead of `0`:
+
+```ts
+enum Color {
+    Red = 1,
+    Green,
+    Blue,
+}
+let c: Color = Color.Green;
+```
+
+Or even manually set all the values in the enum:
+
+```ts
+enum Color {
+    Red = 1,
+    Green = 2,
+    Blue = 4,
+}
+let c: Color = Color.Green;
+```
+
+A handy feature of enums is that you can also go from a numeric value to the name of that value in the enum. For example, if we had the value `2` but weren't sure what that mapped to in the `Color` enum above, we could look up the corresponding name:
+
+```ts
+enum Color{
+    Red = 1,
+    Green,
+    Blue,
+}
+let colorName: string = Color[2];
+
+// Displays 'Green'
+console.log(colorName);
 ```
