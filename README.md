@@ -65,3 +65,39 @@ The second way uses a generic array type, `Array<elemType>`:
 ```ts
 let list: Array<number> = [1, 2, 3];
 ```
+
+### Tuple
+
+Tuple types allow you to express an array with a fixed number of elements whose types are known, but need not be the same. For example, you may want to represent a value as a pair of a `string` and a `number`:
+
+'''ts
+// Declare a tuple type
+let x: [string, number];
+// Initialize it
+x = ["hello", 10]; // OK
+// Initialize it incorrectly
+x = [10, "hello"]; // Error
+`Type 'number' is not assignable to type 'string'.`
+`Type 'string' is not assignable to type 'number'.`
+```
+
+When accessing an element with a known index, the correct type is retrieved:
+
+```
+// OK
+console.log(x[0].substring(1));
+
+console.log(x[1].substring(1));
+`Property 'substring' does not exist on type 'number'.`
+```
+
+Accessing an element outside the set of known indices fails with an error:
+
+```
+x[3] = "world";
+`Tuple type '[string, number]' of length '2' has no element at index '3'.`
+
+console.log(x[5].toString());
+`Object is possibly 'underfined'.`
+`Tuple type '[string, number]' of length '2' has no element at index '5'.`
+```
